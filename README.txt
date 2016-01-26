@@ -1,3 +1,6 @@
+Name: Kurtis Odom
+CS username: odom
+
 Welcome.
 
 You have sucessfully obtained a copy of the contents in the oracle repository.
