@@ -192,16 +192,29 @@ int main() {
                                         dTime.push_back(Saw.baseDeliveryTime *5.5);
                 }
 	}
+	double totalPrice = 0;
+	for(int i=0; i<prices.size();i++)
+		totalPrice = prices[i] + totalPrice;
 	
-	for(vector<double>::iterator it = prices.begin(); it!= prices.end(); ++it)       
-                cout  << *it << " ";
-		cout << endl;		
+	// Delivery time final calculation
+	double topTime = 0; 
+	for(int i=0; i<dTime.size();i++)
+	{
+		if(dTime[i] > topTime)
+			topTime = dTime[i];
+	}
 	
 	// Output functionality
+	int c = 0;
 	cout << info[0] << ", " << info[1] << endl;
 	for(vector<string>::iterator it = woodReqs.begin(); it!= woodReqs.end(); ++it)
-		cout << " | " << *it;
+	{
+		cout << " | " << *it << ":$" << prices[c];
+		c = c + 1;
+	}
 	cout << " | " << endl;
+	cout << "Total Price: $" << totalPrice << endl;
+	cout << "Estimated Delivery Time: " << topTime << "hrs" << endl;
 	return 0;
 }
 
