@@ -1,0 +1,9 @@
+(a) 2
+(b) Aug 24, 2015
+(c) None
+(b) Once
+(e) 'git log' shows a log of all commits while 'git status' shows the 
+	differences between the working directory and the HEAD commits
+(f) git show main.java
+(g) git log --grep=transactions
+(h) git log --author=Lauren --after="2015-1-5" --before="2015-2-16"
