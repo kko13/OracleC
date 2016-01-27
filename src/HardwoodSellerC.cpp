@@ -41,8 +41,13 @@ int main() {
 	WoodItem White("White Oak",2.3,6.70);
 	WoodItem Saw("Sawdust",1,1.50);
 
+	// User input
+	string fileName;
+	cout << "What file would you like to calculate?" << endl;
+	cin >> fileName;
+	string* order = readInputFile(fileName);
+	
 	// Input seperation line1
-	string* order = readInputFile("order.txt");
 	string line1 = order[0];
 	string line2 = order[1];
 	string* info = new string[3];
