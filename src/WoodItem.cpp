@@ -15,10 +15,6 @@ WoodItem::WoodItem() {
 	price = 0.0;
 }
 
-/*
- * Method to initialize a tic tac toe game
- * Initializes board and turn
- */
 WoodItem::WoodItem(std::string woodType, double deliveryTime, double itemPrice) {
 	type = woodType;
 	baseDeliveryTime = deliveryTime;
