@@ -9,6 +9,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <vector>
 #include "WoodItem.h"
 using namespace std;
 
@@ -43,6 +44,7 @@ int main() {
 	//WoodItem x;
 	//cout << x.price;
 
+	// Input seperation line1
 	string* order = readInputFile("order.txt");
 	string line1 = order[0];
 	string line2 = order[1];
@@ -61,11 +63,24 @@ int main() {
 	info[2] = line1.substr(pHolder, line1.length()-pHolder);
 	info[2] = info[2].substr(1, info[2].length()-1);
 	info[1] = info[1].substr(1, info[1].length()-1);
-	// test3
-	cout << info[0] << endl << info[1] << endl << info[2];
-
-	// test2
-	//cout << order[0] << endl << order[1] << endl;
+	
+	// Input seperation line2
+	vector<string> woodReqs;
+	pHolder = 0;
+	for(int i=0; i<line2.length(); ++i)
+	{
+		if(line2[i] == ';')
+		{
+			woodReqs.push_back(line2.substr(pHolder,i-pHolder));
+			pHolder = i;
+		}
+	}
+	woodReqs.push_back(line2.substr(pHolder, line2.length()-pHolder));
+	woodReqs[1] = woodReqs[1].substr(1, woodReqs[1].length()-1);
+	woodReqs[2] = woodReqs[2].substr(1, woodReqs[2].length()-1);
+	woodReqs[3] = woodReqs[3].substr(1, woodReqs[3].length()-1);
+	cout << woodReqs[0] << endl << woodReqs[1] << endl << woodReqs[2] << endl << 
+woodReqs[3];
 
 	return 0;
 }
