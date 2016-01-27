@@ -40,9 +40,13 @@ double deliveryTime() {
 }
 
 int main() {
-	// test1
-	//WoodItem x;
-	//cout << x.price;
+	// WoodItem initilization
+	WoodItem Cherry("Cherry",2.5,5.95);
+	WoodItem Curly("Curly Maple",1.5,6.00);
+	WoodItem Gen("Genuine Mahogany",3,9.60);
+	WoodItem Wenge("Wenge",5,22.35);
+	WoodItem White("White Oak",2.3,6.70);
+	WoodItem Saw("Sawdust",1,1.50);
 
 	// Input seperation line1
 	string* order = readInputFile("order.txt");
@@ -79,9 +83,12 @@ int main() {
 	woodReqs[1] = woodReqs[1].substr(1, woodReqs[1].length()-1);
 	woodReqs[2] = woodReqs[2].substr(1, woodReqs[2].length()-1);
 	woodReqs[3] = woodReqs[3].substr(1, woodReqs[3].length()-1);
-	cout << woodReqs[0] << endl << woodReqs[1] << endl << woodReqs[2] << endl << 
-woodReqs[3];
 
+	// Output functionality
+	cout << info[0] << ", " << info[1] << endl;
+	for(vector<string>::iterator it = woodReqs.begin(); it!= woodReqs.end(); ++it)
+		cout << " | " << *it;
+	cout << endl;
 	return 0;
 }
 
