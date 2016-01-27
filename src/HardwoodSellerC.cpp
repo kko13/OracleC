@@ -10,6 +10,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <stdlib.h>
 #include "WoodItem.h"
 using namespace std;
 
@@ -29,14 +30,6 @@ string* readInputFile(string inputFilePath) {
                 cout << endl << "Error: Unable to open file" << endl;
                 
         return lines;
-}
-
-/*
- * Method to compute the deliveryTime
- */
-double deliveryTime() {
-        double deliveryETA = 0.0;
-        return deliveryETA;
 }
 
 int main() {
@@ -83,12 +76,132 @@ int main() {
 	woodReqs[1] = woodReqs[1].substr(1, woodReqs[1].length()-1);
 	woodReqs[2] = woodReqs[2].substr(1, woodReqs[2].length()-1);
 	woodReqs[3] = woodReqs[3].substr(1, woodReqs[3].length()-1);
+	
+	// WoodReq parse
+	vector<int> amounts;
+	vector<string> types;
+	for(int i=0; i<woodReqs.size(); i++)
+	{
+		size_t found = woodReqs[i].find(':');
+		string type = woodReqs[i].substr(0,found);
+		string amount = woodReqs[i].substr(found+1, woodReqs[i].length()-found);
+		int amountInt = atoi(amount.c_str());
+		amounts.push_back(amountInt);
+		types.push_back(type);
+	}
 
+	// Price and delivery time calculation
+	vector<double> prices;
+	vector<double> dTime;
+	for(int i=0; i<types.size(); i++)
+	{
+		if(types[i] == Cherry.type)
+		{
+			prices.push_back(Cherry.price * amounts[i]);
+				if(amounts[i] <= 100)
+					dTime.push_back(Cherry.baseDeliveryTime);
+				else if((amounts[i]>=101) && (amounts[i]<=200))
+					dTime.push_back(Cherry.baseDeliveryTime * 2);
+				else if((amounts[i]>=201) && (amounts[i]<=300))
+					dTime.push_back(Cherry.baseDeliveryTime *3);
+				else if((amounts[i]>=301) && (amounts[i]<=400))
+					dTime.push_back(Cherry.baseDeliveryTime *4);
+				else if((amounts[i]>=401) && (amounts[i]<=500))
+					dTime.push_back(Cherry.baseDeliveryTime *5);
+				else
+					dTime.push_back(Cherry.baseDeliveryTime *5.5);
+		}
+		else if(types[i] == Curly.type)
+		{
+			prices.push_back(Curly.price * amounts[i]);
+				if(amounts[i] <= 100)
+                                        dTime.push_back(Curly.baseDeliveryTime);            
+                                else if((amounts[i]>=101) && (amounts[i]<=200))              
+                                        dTime.push_back(Curly.baseDeliveryTime * 2);        
+                                else if((amounts[i]>=201) && (amounts[i]<=300))              
+                                        dTime.push_back(Curly.baseDeliveryTime *3);         
+                                else if((amounts[i]>=301) && (amounts[i]<=400))              
+                                        dTime.push_back(Curly.baseDeliveryTime *4);         
+                                else if((amounts[i]>=401) && (amounts[i]<=500))              
+                                        dTime.push_back(Curly.baseDeliveryTime *5);         
+                                else
+                                        dTime.push_back(Curly.baseDeliveryTime *5.5);
+		}
+		else if(types[i] == Gen.type)
+                {
+			prices.push_back(Gen.price * amounts[i]);
+				if(amounts[i] <= 100)
+                                        dTime.push_back(Gen.baseDeliveryTime);            
+                                else if((amounts[i]>=101) && (amounts[i]<=200))              
+                                        dTime.push_back(Gen.baseDeliveryTime * 2);        
+                                else if((amounts[i]>=201) && (amounts[i]<=300))              
+                                        dTime.push_back(Gen.baseDeliveryTime *3);         
+                                else if((amounts[i]>=301) && (amounts[i]<=400))              
+                                        dTime.push_back(Gen.baseDeliveryTime *4);         
+                                else if((amounts[i]>=401) && (amounts[i]<=500))              
+                                        dTime.push_back(Gen.baseDeliveryTime *5);         
+                                else
+                                        dTime.push_back(Gen.baseDeliveryTime *5.5);
+                }
+		else if(types[i] == Wenge.type)
+                {
+			prices.push_back(Wenge.price * amounts[i]);
+				if(amounts[i] <= 100)
+                                        dTime.push_back(Wenge.baseDeliveryTime);            
+                                else if((amounts[i]>=101) && (amounts[i]<=200))              
+                                        dTime.push_back(Wenge.baseDeliveryTime * 2);        
+                                else if((amounts[i]>=201) && (amounts[i]<=300))              
+                                        dTime.push_back(Wenge.baseDeliveryTime *3);         
+                                else if((amounts[i]>=301) && (amounts[i]<=400))              
+                                        dTime.push_back(Wenge.baseDeliveryTime *4);         
+                                else if((amounts[i]>=401) && (amounts[i]<=500))              
+                                        dTime.push_back(Wenge.baseDeliveryTime *5);         
+                                else
+                                        dTime.push_back(Wenge.baseDeliveryTime *5.5);
+                }
+		else if(types[i] == White.type)
+                {
+			prices.push_back(White.price * amounts[i]);
+				if(amounts[i] <= 100)
+                                        dTime.push_back(White.baseDeliveryTime);            
+                                else if((amounts[i]>=101) && (amounts[i]<=200))              
+                                        dTime.push_back(White.baseDeliveryTime * 2);        
+                                else if((amounts[i]>=201) && (amounts[i]<=300))              
+                                        dTime.push_back(White.baseDeliveryTime *3);         
+                                else if((amounts[i]>=301) && (amounts[i]<=400))              
+                                        dTime.push_back(White.baseDeliveryTime *4);         
+                                else if((amounts[i]>=401) && (amounts[i]<=500))              
+                                        dTime.push_back(White.baseDeliveryTime *5);         
+                                else
+                                        dTime.push_back(White.baseDeliveryTime *5.5);
+                }
+		else
+                {
+			prices.push_back(Saw.price * amounts[i]);
+				if(amounts[i] <= 100)
+                                        dTime.push_back(Saw.baseDeliveryTime);            
+                                else if((amounts[i]>=101) && (amounts[i]<=200))              
+                                        dTime.push_back(Saw.baseDeliveryTime * 2);        
+                                else if((amounts[i]>=201) && (amounts[i]<=300))              
+                                        dTime.push_back(Saw.baseDeliveryTime *3);         
+                                else if((amounts[i]>=301) && (amounts[i]<=400))              
+                                        dTime.push_back(Saw.baseDeliveryTime *4);         
+                                else if((amounts[i]>=401) && (amounts[i]<=500))              
+                                        dTime.push_back(Saw.baseDeliveryTime *5);         
+                                else
+                                        dTime.push_back(Saw.baseDeliveryTime *5.5);
+                }
+	}
+	
+	for(vector<double>::iterator it = prices.begin(); it!= prices.end(); ++it)       
+                cout  << *it << " ";
+		cout << endl;		
+	
 	// Output functionality
 	cout << info[0] << ", " << info[1] << endl;
 	for(vector<string>::iterator it = woodReqs.begin(); it!= woodReqs.end(); ++it)
 		cout << " | " << *it;
-	cout << endl;
+	cout << " | " << endl;
 	return 0;
 }
 
